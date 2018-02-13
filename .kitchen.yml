@@ -1,6 +1,11 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 4096
+    cpus: 2
+  network:
+  - ["private_network", {ip: "192.168.33.15"}]
 
 provisioner:
   name: chef_zero
@@ -14,12 +19,12 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7
-
+    driver:
+     box: ubuntu/trusty64
 suites:
   - name: default
     run_list:
-      - recipe[OpenMRS::default]
+      - recipe[OpenMRS_repo::default]
     verifier:
       inspec_tests:
         - test/smoke/default

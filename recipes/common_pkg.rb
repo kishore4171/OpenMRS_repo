@@ -8,10 +8,10 @@ if node['platform'] == 'ubuntu'
  apt_update
 end
 
-node['OpenMRS']['common_package_list'].each do |pkg|
+node['OpenMRS_repo']['common_package_list'].each do |pkg|
 package pkg do
       action :install
     end
 end
 
-include_recipe 'OpenMRS::tomcat_inst_configure'
+include_recipe 'OpenMRS_repo::tomcat_inst_configure'  
