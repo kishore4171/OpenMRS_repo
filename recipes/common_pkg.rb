@@ -14,4 +14,11 @@ package pkg do
     end
 end
 
+mysql_service 'foo' do
+  port '3306'
+  version '5.7'
+  initial_root_password 'root'
+  action [:create, :start]
+end
+
 include_recipe 'OpenMRS_repo::tomcat_inst_configure'  
